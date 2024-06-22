@@ -8,22 +8,23 @@ arch=('x86_64')
 url="https://example.com"
 license=('MIT')
 depends=('python' 'gtk3' 'vte3')
-makedepends=('nuitka')
-source=('main.py::https://raw.githubusercontent.com/ventshek/terminal_editor/main/terminal_editor/main.py')
-md5sums=('SKIP')
+makedepends=('nuitka' 'scons' 'base-devel')
+source=("https://raw.githubusercontent.com/ventshek/terminal_editor/main/terminal_editor/main.py")
+md5sums=('3646520c77917178a7ebd92171616424')
 
 build() {
     cd "$srcdir"
-    nuitka --standalone --onefile --output-filename=terminal_editor main.py
+    nuitka3 --onefile --output-dir="$srcdir" --output-filename=terminal_editor --lto=no main.py
 }
 
 package() {
-    install -Dm755 "$srcdir/myscript.dist/terminal_editor" "$pkgdir/usr/bin/terminal_editor"
+    cd "$srcdir"
+    install -Dm755 terminal_editor "$pkgdir/usr/bin/terminal_editor"
     
     # Create .desktop file
     install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/terminal_editor.desktop" <<EOF
 [Desktop Entry]
-Name=terminal_editor
+Name=Terminal Editor
 Comment=Powershell ISE bash clone
 Exec=/usr/bin/terminal_editor
 Icon=utilities-terminal
