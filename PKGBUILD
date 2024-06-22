@@ -1,10 +1,10 @@
-# Maintainer: Your Name <your.email@example.com>
-pkgname=my-python-package
-pkgver=0.1.0
+# Maintainer: Your Name <ventshek@gmail.com>
+pkgname=terminal_editor
+pkgver=1.0
 pkgrel=1
-pkgdesc="A brief description of your package"
+pkgdesc="A Powershell ISE Bash clone"
 arch=('any')
-url="https://github.com/yourusername/my-python-package"
+url="https://github.com/ventshek/terminal_editor"
 license=('GPL')
 depends=('gtk3' 'vte3' 'python' 'gobject-introspection')
 makedepends=('python-setuptools')
@@ -19,4 +19,9 @@ build() {
 package() {
     cd "$srcdir/$pkgname-$pkgver"
     python setup.py install --root="$pkgdir/" --optimize=1
+    install -Dm644 terminal_editor.desktop "$pkgdir/usr/share/applications/terminal_editor.desktop"
+}
+
+post_remove() {
+    rm -f "/usr/share/applications/terminal_editor.desktop"
 }

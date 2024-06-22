@@ -33,7 +33,7 @@ class Handler:
             None,
             None,
         )
-    
+
     def on_open_activate(self, button):
         dialog = Gtk.FileChooserDialog(
             title="Please choose a file",
