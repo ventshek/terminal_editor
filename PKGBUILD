@@ -1,11 +1,9 @@
-# Maintainer: Your Name <your.email@example.com>
-
 pkgname=terminal_editor
 pkgver=1.0
 pkgrel=1
 pkgdesc="Powershell ISE bash clone"
 arch=('x86_64')
-url="https://example.com"
+url="https://github.com/ventshek/terminal_editor/tree/main"
 license=('MIT')
 depends=('python' 'gtk3' 'vte3')
 makedepends=('nuitka' 'scons' 'base-devel')
