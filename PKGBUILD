@@ -13,13 +13,19 @@ options=(!lto)
 
 build() {
     cd "$srcdir"
-    nuitka3 --onefile --output-dir="$srcdir" --output-filename=terminal_editor --lto=no main.py
+    mkdir -p build
+    cp main.py build/
+    cd build
+    nuitka3 --standalone --output-dir="$srcdir/build" --lto=no main.py
 }
 
 package() {
-    cd "$srcdir"
-    install -Dm755 terminal_editor "$pkgdir/usr/bin/terminal_editor"
+    cd "$srcdir/build"
+    install -Dm755 main.dist/main.bin "$pkgdir/usr/bin/terminal_editor"
     
+    # Install the data folder created by Nuitka's standalone mode
+    cp -r main.dist/* "$pkgdir/usr/bin/"
+
     # Create .desktop file
     install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/terminal_editor.desktop" <<EOF
 [Desktop Entry]
