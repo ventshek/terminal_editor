@@ -9,6 +9,7 @@ depends=('python' 'gtk3' 'vte3')
 makedepends=('nuitka' 'scons' 'base-devel')
 source=("https://raw.githubusercontent.com/ventshek/terminal_editor/main/terminal_editor/main.py")
 md5sums=('3646520c77917178a7ebd92171616424')
+options=(!lto)
 
 build() {
     cd "$srcdir"
