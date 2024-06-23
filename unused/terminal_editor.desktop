@@ -1,8 +1,0 @@
-# Example .desktop file
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Your Application Name
-Exec=/usr/bin/your-application
-Icon=your-application-icon
-Terminal=false
