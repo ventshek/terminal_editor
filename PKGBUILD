@@ -22,10 +22,7 @@ build() {
 package() {
     cd "$srcdir/build"
     install -Dm755 main.dist/main.bin "$pkgdir/usr/bin/terminal_editor"
-    
-    # Install the data folder created by Nuitka's standalone mode
     cp -r main.dist/* "$pkgdir/usr/bin/"
-
     # Create .desktop file
     install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/terminal_editor.desktop" <<EOF
 [Desktop Entry]
